@@ -22,11 +22,25 @@ $Output | Export-Csv -Path $OutputFile -NoTypeInformation
 Write-Output "$OutputFile successfully created" 
 }
 
+# paths
+$reportsPath = '\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\'
+
+$academicsupport = $reportsPath + 'academicsupport.csv'
+$adminoff = $reportsPath + 'adminoff.csv'
+$allteach = $reportsPath + 'allteach.csv'
+$asstprinall = $reportsPath + 'asstprinall.csv'
+$charters = $reportsPath + 'charters.csv'
+$indian = $reportsPath + 'indianed.csv'
+$prinall = $reportsPath + 'prinall.csv'
+$prinsecall = $reportsPath + 'prinsecall.csv'
+$wilson= $reportsPath + 'wilson.csv'
+
+$SLmemo = $reportsPath + '\upload\SLmemo.csv'
+$DistrictDish = $reportsPath + '\upload\DistrictDish.csv'
+$TeacherConnect = $reportsPath + '\upload\TeacherConnect.csv'
+# end paths
 
 # USAGE:  Merge-CSVFiles -CSVFiles C:\temp\file1.csv,C:\temp\file2.csv -OutputFile c:\temp\output.csv
-# TPS USAGE: Merge-CSVFiles -CSVFiles \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\emailed\indianed.csv,\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\emailed\charters.csv -OutputFile \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\emailed\output.csv
-
-
-Merge-CSVFiles -CSVFiles reports\academicsupport.csv,reports\indianed.csv,reports\prinall.csv,reports\prinsecall.csv,reports\asstprinall.csv,reports\charters.csv -OutputFile reports\upload\SLmemo.csv
-Merge-CSVFiles -CSVFiles reports\allteach.csv,reports\academicsupport.csv,reports\indianed.csv,reports\prinall.csv,reports\prinsecall.csv,reports\asstprinall.csv,reports\charters.csv -OutputFile reports\upload\TeacherConnect.csv
-Merge-CSVFiles -CSVFiles reports\adminoff.csv,reports\indianed.csv,reports\wilson.csv -OutputFile reports\upload\DistrictDish.csv
+Merge-CSVFiles -CSVFiles $academicsupport,$indian,$prinall,$prinsecall,$asstprinall,$charters -OutputFile $SLmemo
+Merge-CSVFiles -CSVFiles $allteach,$academicsupport,$indian,$prinall,$prinsecall,$asstprinall ,$charters -OutputFile $TeacherConnect
+Merge-CSVFiles -CSVFiles $adminoff,$indian,$wilson -OutputFile $DistrictDish
