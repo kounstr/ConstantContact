@@ -22,16 +22,30 @@ $Output | Export-Csv -Path $OutputFile -NoTypeInformation
 Write-Output "$OutputFile successfully created" 
 }
 
+# paths
 $reportspath = '\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\'
-$indianFilePath = $reportspath + 'indianed.csv'
-$chatersFilePath = $reportspath + 'charters.csv'
-$outputFilePath = $reportspath + '\upload\output.csv'
+
+$academicsupport = $reportspath + 'academicsupport.csv'
+$adminoff = $reportspath + 'adminoff.csv'
+$allteach = $reportspath + 'allteach.csv'
+$asstprinall = $reportspath + 'asstprinall.csv'
+$charters = $reportspath + 'charters.csv'
+$indian = $reportspath + 'indianed.csv'
+$prinall = $reportspath + 'prinall.csv'
+$prinsecall = $reportspath + 'prinsecall.csv'
+$wilson= $reportspath + 'wilson.csv'
+
+$output = $reportspath + '\upload\test_output.csv'
+$SLmemo = $reportspath + '\upload\SLmemo.csv'
+$DistrictDish = $reportspath + '\upload\DistrictDish.csv'
+$TeacherConnect = $reportspath + '\upload\TeacherConnect.csv'
+# end paths
 
 # USAGE:  Merge-CSVFiles -CSVFiles C:\temp\file1.csv,C:\temp\file2.csv -OutputFile c:\temp\output.csv
 # TPS USAGE: Merge-CSVFiles -CSVFiles \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\indianed.csv,\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\charters.csv -OutputFile \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\upload\output.csv
-Merge-CSVFiles -CSVFiles $indianFilePath,$chatersFilePath -OutputFile $outputFilePath
+# Merge-CSVFiles -CSVFiles $indian,$charters -OutputFile $output
 
 
-# Merge-CSVFiles -CSVFiles reports\academicsupport.csv,reports\indianed.csv,reports\prinall.csv,reports\prinsecall.csv,reports\asstprinall.csv,reports\charters.csv -OutputFile reports\upload\SLmemo.csv
-# Merge-CSVFiles -CSVFiles reports\allteach.csv,reports\academicsupport.csv,reports\indianed.csv,reports\prinall.csv,reports\prinsecall.csv,reports\asstprinall.csv,reports\charters.csv -OutputFile reports\upload\TeacherConnect.csv
-# Merge-CSVFiles -CSVFiles reports\adminoff.csv,reports\indianed.csv,reports\wilson.csv -OutputFile reports\upload\DistrictDish.csv
+Merge-CSVFiles -CSVFiles $academicsupport,$indian,$prinall,$prinsecall,$asstprinall,$charters -OutputFile $SLmemo
+Merge-CSVFiles -CSVFiles $allteach,$academicsupport,$indian,$prinall,$prinsecall,$asstprinall ,$charters -OutputFile $TeacherConnect
+Merge-CSVFiles -CSVFiles $adminoff,$indian,$wilson -OutputFile $DistrictDish
