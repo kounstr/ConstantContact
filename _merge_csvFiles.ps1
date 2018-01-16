@@ -22,10 +22,14 @@ $Output | Export-Csv -Path $OutputFile -NoTypeInformation
 Write-Output "$OutputFile successfully created" 
 }
 
+$reportspath = '\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\'
+$indianFilePath = $reportspath + 'indianed.csv'
+$chatersFilePath = $reportspath + 'charters.csv'
+$outputFilePath = $reportspath + '\upload\output.csv'
 
 # USAGE:  Merge-CSVFiles -CSVFiles C:\temp\file1.csv,C:\temp\file2.csv -OutputFile c:\temp\output.csv
 # TPS USAGE: Merge-CSVFiles -CSVFiles \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\indianed.csv,\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\charters.csv -OutputFile \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\upload\output.csv
-Merge-CSVFiles -CSVFiles \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\indianed.csv,\\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\charters.csv -OutputFile \\esc-msr-v-ut01\d$\Scripts\ConstantContact\reports\upload\output.csv
+Merge-CSVFiles -CSVFiles $indianFilePath,$chatersFilePath -OutputFile $outputFilePath
 
 
 # Merge-CSVFiles -CSVFiles reports\academicsupport.csv,reports\indianed.csv,reports\prinall.csv,reports\prinsecall.csv,reports\asstprinall.csv,reports\charters.csv -OutputFile reports\upload\SLmemo.csv
